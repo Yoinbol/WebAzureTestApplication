@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebAzureTestApplication.Providers;
 
 namespace WebAzureTestApplication
 {
@@ -18,6 +19,13 @@ namespace WebAzureTestApplication
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            PushNotificationsBroker.Broker.Start();
+        }
+
+        protected void Application_End()
+        {
+            PushNotificationsBroker.Broker.Stop();
         }
     }
 }
